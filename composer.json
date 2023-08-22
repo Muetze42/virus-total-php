@@ -1,0 +1,37 @@
+{
+    "name": "norman-huth/virus-total-php",
+    "description": "A wrapper for the VirusTotal API V3.",
+    "license": "MIT",
+    "homepage": "https://huth.it",
+    "support": {
+        "issues": "https://github.com/Muetze42/virus-total-php/issues",
+        "source": "https://github.com/Muetze42/virus-total-php"
+    },
+    "authors": [
+        {
+            "name": "Norman Huth",
+            "homepage": "https://huth.it"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "NormanHuth\\VirusTotal\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^8.0",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^6.3|^7.0",
+        "ext-fileinfo": "*"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NormanHuth\\VirusTotal\\Providers\\ServiceProvider"
+            ],
+            "aliases": {
+                "VirusTotal": "NormanHuth\\VirusTotal\\Facades\\VirusTotal"
+            }
+        }
+    }
+}

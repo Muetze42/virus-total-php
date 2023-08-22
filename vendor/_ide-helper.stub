@@ -1,0 +1,1508 @@
+<?php
+// @formatter:off
+// phpcs:ignoreFile
+
+namespace NormanHuth\VirusTotal\Facades {
+    /**
+     *
+     *
+     */
+    class VirusTotal {
+        /**
+         * Gets file size in MB.
+         *
+         * @param $file
+         * @return float
+         * @static
+         */
+        public static function getFilesizeMB($file)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            return \NormanHuth\VirusTotal\Services\VirusTotalLaravel::getFilesizeMB($file);
+        }
+        /**
+         * Get an IP address report.
+         *
+         * @link https://developers.virustotal.com/reference/ip-info
+         * @param string $ip
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array{
+         *      attributes: array{
+         *          as_owner: string,
+         *          asn: int,
+         *          continent: string,
+         *          country: string,
+         *          jarm: string,
+         *          last_analysis_date: int,
+         *          last_analysis_results: array{array-key,
+         *              category: string,
+         *              engine_name: string,
+         *              method: string,
+         *              result: string,
+         *          },
+         *          last_analysis_stats: array{
+         *              harmless: int,
+         *              malicious: int,
+         *              suspicious: int,
+         *              timeout: int,
+         *              undetected: int,
+         *          },
+         *          last_modification_date: int,
+         *          network: string,
+         *          regional_internet_registry: string,
+         *          reputation: int,
+         *          total_votes: array{
+         *              harmless: int,
+         *              malicious: int,
+         *          },
+         *          tags: array{string},
+         *          whois: string,
+         *          whois_date: int,
+         *      },
+         *     id: string,
+         *     links: array{self: string},
+         *     type: 'ip_address',
+         *  }
+         * }
+         * @static
+         */
+        public static function scanIP($ip)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->scanIP($ip);
+        }
+        /**
+         * Get a domain report.
+         *
+         * @link https://developers.virustotal.com/reference/domain-info
+         * @param string $domain
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array{
+         *      attributes: array{
+         *          categories: array{array-key, string},
+         *          creation_date: int,
+         *          favicon: array{array-key, string},
+         *          jarm: string,
+         *          last_analysis_date: int,
+         *          last_analysis_results: array{array-key, array{
+         *              category: string,
+         *              engine_name: string,
+         *              method: string,
+         *              result: string
+         *          }},
+         *          last_analysis_stats: array{
+         *              harmless: int,
+         *              malicious: int,
+         *              suspicious: int,
+         *              timeout: int,
+         *              undetected: int
+         *          },
+         *          last_dns_records: array{array-key, array{
+         *              expire: int,
+         *              flag: int,
+         *              minimum: int,
+         *              priority: int,
+         *              refresh: int,
+         *              rname: int,
+         *              retry: int,
+         *              serial: int,
+         *              tag: string,
+         *              ttl: int,
+         *              type: string,
+         *              value: string
+         *          }},
+         *          last_dns_records_date: int,
+         *          last_https_certificate: array,
+         *          last_https_certificate_date: int,
+         *          last_modification_date: int,
+         *          last_update_date: int,
+         *          popularity_ranks: array{array-key, array{
+         *              rank: int,
+         *              timestamp: int
+         *          }},
+         *          registrar: string,
+         *          reputation: int,
+         *          tags: array{string},
+         *          total_votes: array{
+         *              harmless: int,
+         *              malicious: int,
+         *          },
+         *          whois: string,
+         *          whois_date: int,
+         *      },
+         *     id: string,
+         *     links: array{self: string},
+         *     type: 'domain',
+         *  }
+         * }
+         * @static
+         */
+        public static function scanDomain($domain)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->scanDomain($domain);
+        }
+        /**
+         * Upload a (large) file.
+         *
+         * @link https://developers.virustotal.com/reference/files-scan
+         * @link https://developers.virustotal.com/reference/files-upload-url
+         * @param string $file
+         * @param string|null $password
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @throws \NormanHuth\VirusTotal\Exceptions\VirusTotalApiException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array{
+         *      type: 'analysis',
+         *      id: string,
+         *      links: array{self: string},
+         *  }
+         * }
+         * @static
+         */
+        public static function scanFile($file, $password = null)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->scanFile($file, $password);
+        }
+        /**
+         * Get a URL / file analysis.
+         *
+         * @link https://developers.virustotal.com/reference/analysis
+         * @param string $id
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function analyseUrlOrFile($id)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->analyseUrlOrFile($id);
+        }
+        /**
+         * Get a URL / file analysis.
+         *
+         * @link https://developers.virustotal.com/reference/analysis
+         * @param string $id
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getAURLOrFileAnalysis($id)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getAURLOrFileAnalysis($id);
+        }
+        /**
+         * Get objects related to an analysis.
+         *
+         * @link https://developers.virustotal.com/reference/analysesidrelationship-1
+         * @param string $id
+         * @param string $relationship
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getObjectsRelatedToAnAnalysis($id, $relationship = 'item')
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getObjectsRelatedToAnAnalysis($id, $relationship);
+        }
+        /**
+         * Get object descriptors related to an analysis.
+         *
+         * @link https://developers.virustotal.com/reference/analysesidrelationshipsrelationship-1
+         * @param string $id
+         * @param string $relationship
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getObjectDescriptorsRelatedToAnAnalysis($id, $relationship = 'item')
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getObjectDescriptorsRelatedToAnAnalysis($id, $relationship);
+        }
+        /**
+         * Get a submission object.
+         *
+         * @link https://developers.virustotal.com/reference/get-submission
+         * @param string $id
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getASubmissionObject($id)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getASubmissionObject($id);
+        }
+        /**
+         * Get an operation object.
+         *
+         * @link https://developers.virustotal.com/reference/get-operations-id
+         * @param string $id
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getAnOperationObject($id)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getAnOperationObject($id);
+        }
+        /**
+         * Get an attack tactic object.
+         *
+         * @link https://developers.virustotal.com/reference/attack_tacticsid
+         * @param string $id
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getAnAttackTacticObject($id)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getAnAttackTacticObject($id);
+        }
+        /**
+         * Get objects related to an attack tactic.
+         *
+         * @link https://developers.virustotal.com/reference/attack_tacticsidrelationship
+         * @param string $id
+         * @param string $relationship
+         * @param string|null $cursor
+         * @param int $limit
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getObjectsRelatedToAnAttackTactic($id, $relationship, $cursor = null, $limit = 40)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getObjectsRelatedToAnAttackTactic($id, $relationship, $cursor, $limit);
+        }
+        /**
+         * Get object descriptors related to an attack tactic.
+         *
+         * @link https://developers.virustotal.com/reference/attack_tacticsidrelationshipsrelationship
+         * @param string $id
+         * @param string $relationship
+         * @param string|null $cursor
+         * @param int $limit
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getObjectDescriptorsRelatedToAnAttackTactic($id, $relationship, $cursor = null, $limit = 40)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getObjectDescriptorsRelatedToAnAttackTactic($id, $relationship, $cursor, $limit);
+        }
+        /**
+         * Get an attack technique object.
+         *
+         * @link https://developers.virustotal.com/reference/attack_techniqueid
+         * @param string $id
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getAnAttackTechniqueObject($id)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getAnAttackTechniqueObject($id);
+        }
+        /**
+         * Get objects related to an attack technique.
+         *
+         * @link https://developers.virustotal.com/reference/attack_techniqueidrelationship
+         * @param string $id
+         * @param string $relationship
+         * @param string|null $cursor
+         * @param int $limit
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getObjectsRelatedToAnAttackTechnique($id, $relationship, $cursor = null, $limit = 40)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getObjectsRelatedToAnAttackTechnique($id, $relationship, $cursor, $limit);
+        }
+        /**
+         * Get object descriptors related to an attack technique.
+         *
+         * @link https://developers.virustotal.com/reference/attack_techniquesidrelationshipsrelationship
+         * @param string $id
+         * @param string $relationship
+         * @param string|null $cursor
+         * @param int $limit
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getObjectDescriptorsRelatedToAnAttackTechnique($id, $relationship, $cursor = null, $limit = 40)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getObjectDescriptorsRelatedToAnAttackTechnique($id, $relationship, $cursor, $limit);
+        }
+        /**
+         * Get latest comments.
+         *
+         * @link https://developers.virustotal.com/reference/get-comments
+         * @param string|null $filter
+         * @param string|null $cursor
+         * @param int $limit
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getLatestComments($filter = null, $cursor = null, $limit = 40)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getLatestComments($filter, $cursor, $limit);
+        }
+        /**
+         * Get a comment object.
+         *
+         * @link https://developers.virustotal.com/reference/get-comment
+         * @param string $id
+         * @param string|null $relationships
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getACommentObject($id, $relationships = null)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getACommentObject($id, $relationships);
+        }
+        /**
+         * Update a comment.
+         *
+         * @link https://developers.virustotal.com/reference/comment-id-patch
+         * @param string $id
+         * @param array|string|mixed $data
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function updateAComment($id, $data)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->updateAComment($id, $data);
+        }
+        /**
+         * Delete a comment.
+         *
+         * @link https://developers.virustotal.com/reference/comment-id-delete
+         * @param string $id
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: string
+         * }
+         * @static
+         */
+        public static function deleteAComment($id)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->deleteAComment($id);
+        }
+        /**
+         * Get objects related to a comment.
+         *
+         * @link https://developers.virustotal.com/reference/comments-relationships
+         * @param string $id
+         * @param string $relationship
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return array
+         * @static
+         */
+        public static function getObjectsRelatedToAComment($id, $relationship)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getObjectsRelatedToAComment($id, $relationship);
+        }
+        /**
+         * Get object descriptors related to a comment.
+         *
+         * @link https://developers.virustotal.com/reference/comments-relationships-ids
+         * @param string $id
+         * @param string $relationship
+         * @param string|null $cursor
+         * @param int $limit
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @static
+         */
+        public static function getObjectDescriptorsRelatedToAComment($id, $relationship, $cursor = null, $limit = 40)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getObjectDescriptorsRelatedToAComment($id, $relationship, $cursor, $limit);
+        }
+        /**
+         * Add a vote to a comment.
+         *
+         * @link https://developers.virustotal.com/reference/vote-comment
+         * @param string $id
+         * @param string|array|mixed $data
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @static
+         */
+        public static function addAVoteToAComment($id, $data)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->addAVoteToAComment($id, $data);
+        }
+        /**
+         * Get a domain report.
+         *
+         * @link https://developers.virustotal.com/reference/domain-info
+         * @param string $domain
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array{
+         *      attributes: array{
+         *          categories: array{array-key, string},
+         *          creation_date: int,
+         *          favicon: array{array-key, string},
+         *          jarm: string,
+         *          last_analysis_date: int,
+         *          last_analysis_results: array{array-key, array{
+         *              category: string,
+         *              engine_name: string,
+         *              method: string,
+         *              result: string
+         *          }},
+         *          last_analysis_stats: array{
+         *              harmless: int,
+         *              malicious: int,
+         *              suspicious: int,
+         *              timeout: int,
+         *              undetected: int
+         *          },
+         *          last_dns_records: array{array-key, array{
+         *              expire: int,
+         *              flag: int,
+         *              minimum: int,
+         *              priority: int,
+         *              refresh: int,
+         *              rname: int,
+         *              retry: int,
+         *              serial: int,
+         *              tag: string,
+         *              ttl: int,
+         *              type: string,
+         *              value: string
+         *          }},
+         *          last_dns_records_date: int,
+         *          last_https_certificate: array,
+         *          last_https_certificate_date: int,
+         *          last_modification_date: int,
+         *          last_update_date: int,
+         *          popularity_ranks: array{array-key, array{
+         *              rank: int,
+         *              timestamp: int
+         *          }},
+         *          registrar: string,
+         *          reputation: int,
+         *          tags: array{string},
+         *          total_votes: array{
+         *              harmless: int,
+         *              malicious: int,
+         *          },
+         *          whois: string,
+         *          whois_date: int,
+         *      },
+         *     id: string,
+         *     links: array{self: string},
+         *     type: 'domain',
+         *  }
+         * }
+         * @static
+         */
+        public static function getADomainReport($domain)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getADomainReport($domain);
+        }
+        /**
+         * Get comments on a domain.
+         *
+         * @link https://developers.virustotal.com/reference/domains-comments-get
+         * @param string $domain
+         * @param string|null $cursor
+         * @param int $limit
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getCommentsOnADomain($domain, $cursor = null, $limit = 40)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getCommentsOnADomain($domain, $cursor, $limit);
+        }
+        /**
+         * Add a comment to a domain.
+         *
+         * @link https://developers.virustotal.com/reference/domains-comments-post
+         * @param string $domain
+         * @param string $text
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function addACommentToADomain($domain, $text)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->addACommentToADomain($domain, $text);
+        }
+        /**
+         * Get objects related to a domain.
+         *
+         * @link https://developers.virustotal.com/reference/domains-relationships
+         * @param string $domain
+         * @param string $relationship
+         * @param string|null $cursor
+         * @param int $limit
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getObjectsRelatedToADomain($domain, $relationship, $cursor = null, $limit = 40)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getObjectsRelatedToADomain($domain, $relationship, $cursor, $limit);
+        }
+        /**
+         * Get object descriptors related to a domain
+         *
+         * @link https://developers.virustotal.com/reference/domains-relationships-ids
+         * @param string $domain
+         * @param string $relationship
+         * @param string|null $cursor
+         * @param int $limit
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getObjectDescriptorsRelatedToADomain($domain, $relationship, $cursor = null, $limit = 40)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getObjectDescriptorsRelatedToADomain($domain, $relationship, $cursor, $limit);
+        }
+        /**
+         * Get a DNS resolution object.
+         *
+         * @link https://developers.virustotal.com/reference/get-resolution-by-id
+         * @param string $id
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getADNSResolutionObject($id)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getADNSResolutionObject($id);
+        }
+        /**
+         * Get votes on a domain.
+         *
+         * @link https://developers.virustotal.com/reference/domains-votes-get
+         * @param string $domain
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getVotesOnADomain($domain)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getVotesOnADomain($domain);
+        }
+        /**
+         * Add a vote to a domain.
+         *
+         * @link https://developers.virustotal.com/reference/domain-votes-post
+         * @param string $domain
+         * @param string $verdict
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function addAVoteToADomain($domain, $verdict)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->addAVoteToADomain($domain, $verdict);
+        }
+        /**
+         * Get a summary of all behavior reports for a file.
+         *
+         * @link https://developers.virustotal.com/reference/file-all-behaviours-summary
+         * @param string $id
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getASummaryOfAllBehaviorReportsForAFile($id)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getASummaryOfAllBehaviorReportsForAFile($id);
+        }
+        /**
+         * Get a summary of all MITRE ATT&CK techniques observed in a file.
+         *
+         * @link https://developers.virustotal.com/reference/file-all-behaviours-summary
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getASummaryOfAllMITREATTnCKTechniquesObservedInAFile($id)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getASummaryOfAllMITREATTnCKTechniquesObservedInAFile($id);
+        }
+        /**
+         * Get all behavior reports for a file.
+         *
+         * @link https://developers.virustotal.com/reference/get-all-behavior-reports-for-a-file
+         * @param string $id
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @static
+         */
+        public static function getAllBehaviorReportsForAFile($id)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getAllBehaviorReportsForAFile($id);
+        }
+        /**
+         * Get a file behavior report from a sandbox.
+         *
+         * @link https://developers.virustotal.com/reference/get-file-behaviour-id
+         * @param string $sandboxId
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @static
+         */
+        public static function getAFileBehaviorReportFromASandbox($sandboxId)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getAFileBehaviorReportFromASandbox($sandboxId);
+        }
+        /**
+         * Get objects related to a behaviour report.
+         *
+         * @link https://developers.virustotal.com/reference/file_behaviourssandbox_idrelationship
+         * @param string $sandboxId
+         * @param string $relationship
+         * @param string|null $cursor
+         * @param int $limit
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getObjectsRelatedToABehaviourReport($sandboxId, $relationship, $cursor = null, $limit = 40)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getObjectsRelatedToABehaviourReport($sandboxId, $relationship, $cursor, $limit);
+        }
+        /**
+         * Get object descriptors related to a behaviour report.
+         *
+         * @link https://developers.virustotal.com/reference/file_behaviourssandbox_idrelationshipsrelationship
+         * @param string $sandboxId
+         * @param string $relationship
+         * @param string|null $cursor
+         * @param int $limit
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getObjectDescriptorsRelatedToABehaviourReport($sandboxId, $relationship, $cursor = null, $limit = 40)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getObjectDescriptorsRelatedToABehaviourReport($sandboxId, $relationship, $cursor, $limit);
+        }
+        /**
+         * Get a detailed HTML behaviour report.
+         *
+         * @link https://developers.virustotal.com/reference/get-file-behaviour-html
+         * @param string $sandboxId
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @static
+         */
+        public static function getADetailedHTMLBehaviourReport($sandboxId)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getADetailedHTMLBehaviourReport($sandboxId);
+        }
+        /**
+         * Get the EVTX file generated during a file’s behavior analysis.
+         *
+         * @link https://developers.virustotal.com/reference/file-behaviour-evtx
+         * @param string $sandboxId
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @static
+         */
+        public static function getTheEVTXFileGeneratedDuringAFilesBehaviorAnalysis($sandboxId)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getTheEVTXFileGeneratedDuringAFilesBehaviorAnalysis($sandboxId);
+        }
+        /**
+         * Get the PCAP file generated during a file’s behavior analysis.
+         *
+         * @link https://developers.virustotal.com/reference/file_behaviours_pcap
+         * @param string $sandboxId
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @static
+         */
+        public static function getThePCAPFileGeneratedDuringAFilesBehaviorAnalysis($sandboxId)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getThePCAPFileGeneratedDuringAFilesBehaviorAnalysis($sandboxId);
+        }
+        /**
+         * Get the memdump file generated during a file’s behavior analysis.
+         *
+         * @link https://developers.virustotal.com/reference/file-behaviour-memdump
+         * @param string $sandboxId
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @static
+         */
+        public static function getTheMemdumpFileGeneratedDuringAFilesBehaviorAnalysis($sandboxId)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getTheMemdumpFileGeneratedDuringAFilesBehaviorAnalysis($sandboxId);
+        }
+        /**
+         * Upload a file.
+         *
+         * @link https://developers.virustotal.com/reference/files-scan
+         * @param string $file
+         * @param string|null $password
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array{
+         *      type: 'analysis',
+         *      id: string,
+         *      links: array{self: string},
+         *  }
+         * }
+         * @static
+         */
+        public static function uploadAFile($file, $password = null)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->uploadAFile($file, $password);
+        }
+        /**
+         * Get a URL for uploading large files.
+         *
+         * @link https://developers.virustotal.com/reference/files-upload-url
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: string
+         * }
+         * @static
+         */
+        public static function getAURLForUploadingLargeFiles()
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getAURLForUploadingLargeFiles();
+        }
+        /**
+         * Upload a large file.
+         *
+         * @link https://developers.virustotal.com/reference/files-upload-url
+         * @param string $url
+         * @param string $file
+         * @param string|null $password
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array{
+         *      type: 'analysis',
+         *      id: string,
+         *      links: array{self: string},
+         *  }
+         * }
+         * @static
+         */
+        public static function uploadALargeFile($url, $file, $password = null)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->uploadALargeFile($url, $file, $password);
+        }
+        /**
+         * Request a file rescan (re-analyze).
+         *
+         * @link https://developers.virustotal.com/reference/files-analyse
+         * @param string $id
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array{
+         *      type: 'analysis',
+         *      id: string
+         *  }
+         * }
+         * @static
+         */
+        public static function requestAFileRescan($id)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->requestAFileRescan($id);
+        }
+        /**
+         * Get a file’s download URL.
+         *
+         * @link https://developers.virustotal.com/reference/files-download-url
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: string
+         * }
+         * @static
+         */
+        public static function getAFilesDownloadURL($id)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getAFilesDownloadURL($id);
+        }
+        /**
+         * Download a file.
+         *
+         * @link https://developers.virustotal.com/reference/files-download
+         * @param string $id
+         * @param string $target
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \Psr\Http\Message\ResponseInterface
+         * @static
+         */
+        public static function downloadAFile($id, $target)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->downloadAFile($id, $target);
+        }
+        /**
+         * Get comments on a file.
+         *
+         * @link https://developers.virustotal.com/reference/files-comments-get
+         * @param string $id
+         * @param string|null $cursor
+         * @param int $limit
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getCommentsOnAFile($id, $cursor = null, $limit = 40)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getCommentsOnAFile($id, $cursor, $limit);
+        }
+        /**
+         * Add a comment to a file.
+         *
+         * @link https://developers.virustotal.com/reference/ip-comments-post
+         * @param string $id
+         * @param string $text
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function addACommentToAFile($id, $text)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->addACommentToAFile($id, $text);
+        }
+        /**
+         * Get objects related to a file.
+         *
+         * @link https://developers.virustotal.com/reference/files-relationships
+         * @param string $id
+         * @param string $relationship
+         * @param string|null $cursor
+         * @param int $limit
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getObjectsRelatedToAFile($id, $relationship, $cursor = null, $limit = 40)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getObjectsRelatedToAFile($id, $relationship, $cursor, $limit);
+        }
+        /**
+         * Get object descriptors related to a file.
+         *
+         * @link https://developers.virustotal.com/reference/files-relationships-ids
+         * @param string $id
+         * @param string $relationship
+         * @param string|null $cursor
+         * @param int $limit
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getObjectDescriptorsRelatedToAFile($id, $relationship, $cursor = null, $limit = 40)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getObjectDescriptorsRelatedToAFile($id, $relationship, $cursor, $limit);
+        }
+        /**
+         * Get a crowdsourced Sigma rule object.
+         *
+         * @link https://developers.virustotal.com/reference/get-sigma-rules
+         * @param string $id
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getACrowdsourcedSigmaRuleObject($id)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getACrowdsourcedSigmaRuleObject($id);
+        }
+        /**
+         * Get a crowdsourced YARA ruleset.
+         *
+         * @link https://developers.virustotal.com/reference/get-yara-rulesets
+         * @param string $id
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getACrowdsourcedYARARuleset($id)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getACrowdsourcedYARARuleset($id);
+        }
+        /**
+         * Get votes on a file.
+         *
+         * @link https://developers.virustotal.com/reference/files-votes-get
+         * @param string $id
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getVotesOnAFile($id)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getVotesOnAFile($id);
+        }
+        /**
+         * Add a vote on a file.
+         *
+         * @link https://developers.virustotal.com/reference/files-votes-post
+         * @param string $id
+         * @param string $verdict
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function addAVoteOnAFile($id, $verdict)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->addAVoteOnAFile($id, $verdict);
+        }
+        /**
+         * Get an IP address report.
+         *
+         * @link https://developers.virustotal.com/reference/ip-info
+         * @param string $ip
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array{
+         *      attributes: array{
+         *          as_owner: string,
+         *          asn: int,
+         *          continent: string,
+         *          country: string,
+         *          jarm: string,
+         *          last_analysis_date: int,
+         *          last_analysis_results: array{array-key,
+         *              category: string,
+         *              engine_name: string,
+         *              method: string,
+         *              result: string,
+         *          },
+         *          last_analysis_stats: array{
+         *              harmless: int,
+         *              malicious: int,
+         *              suspicious: int,
+         *              timeout: int,
+         *              undetected: int,
+         *          },
+         *          last_modification_date: int,
+         *          network: string,
+         *          regional_internet_registry: string,
+         *          reputation: int,
+         *          total_votes: array{
+         *              harmless: int,
+         *              malicious: int,
+         *          },
+         *          tags: array{string},
+         *          whois: string,
+         *          whois_date: int,
+         *      },
+         *     id: string,
+         *     links: array{self: string},
+         *     type: 'ip_address',
+         *  }
+         * }
+         * @static
+         */
+        public static function getAnIPAddressReport($ip)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getAnIPAddressReport($ip);
+        }
+        /**
+         * Get comments on an IP address.
+         *
+         * @link https://developers.virustotal.com/reference/ip-comments-get
+         * @param string $ip
+         * @param string|null $cursor
+         * @param int $limit
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getCommentsOnAnIPAddress($ip, $cursor = null, $limit = 40)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getCommentsOnAnIPAddress($ip, $cursor, $limit);
+        }
+        /**
+         * Add a comment to an IP address.
+         *
+         * @link https://developers.virustotal.com/reference/ip-comments-post
+         * @param string $ip
+         * @param string $text
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function addACommentToAnIPAddress($ip, $text)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->addACommentToAnIPAddress($ip, $text);
+        }
+        /**
+         * Get objects related to an IP address.
+         *
+         * @link https://developers.virustotal.com/reference/ip-relationships
+         * @param string $ip
+         * @param string $relationship
+         * @param string|null $cursor
+         * @param int $limit
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getObjectsRelatedToAnIPAddress($ip, $relationship, $cursor = null, $limit = 40)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getObjectsRelatedToAnIPAddress($ip, $relationship, $cursor, $limit);
+        }
+        /**
+         * Get object descriptors related to an IP address.
+         *
+         * @link https://developers.virustotal.com/reference/ip-relationships-ids
+         * @param string $ip
+         * @param string $relationship
+         * @param string|null $cursor
+         * @param int $limit
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getObjectDescriptorsRelatedToAnIPAddress($ip, $relationship, $cursor = null, $limit = 40)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getObjectDescriptorsRelatedToAnIPAddress($ip, $relationship, $cursor, $limit);
+        }
+        /**
+         * Get votes on an IP address.
+         *
+         * @link https://developers.virustotal.com/reference/ip-votes
+         * @param string $ip
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getVotesOnAnIPAddress($ip)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getVotesOnAnIPAddress($ip);
+        }
+        /**
+         * Add a vote to an IP address.
+         *
+         * @link https://developers.virustotal.com/reference/ip-votes-post
+         * @param string $ip
+         * @param string $verdict
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function addAVoteToAnIPAddress($ip, $verdict)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->addAVoteToAnIPAddress($ip, $verdict);
+        }
+        /**
+         * Get a list of popular threat categories.
+         *
+         * @link https://developers.virustotal.com/reference/popular_threat_categories
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getAListOfPopularThreatCategories()
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getAListOfPopularThreatCategories();
+        }
+        /**
+         * Scan URL.
+         *
+         * @link https://developers.virustotal.com/reference/scan-url
+         * @param string $url
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array{
+         *      type: 'analysis',
+         *      id: string,
+         *      links: array{self: string},
+         *  }
+         * }
+         * @static
+         */
+        public static function scanURL($url)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->scanURL($url);
+        }
+        /**
+         * Get a URL analysis report.
+         *
+         * @link https://developers.virustotal.com/reference/url-info
+         * @param string $id
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getAURLAnalysisReport($id)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getAURLAnalysisReport($id);
+        }
+        /**
+         * Request a URL rescan (re-analyze).
+         *
+         * @link https://developers.virustotal.com/reference/urls-analyse
+         * @param string $id
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array{
+         *          id: string,
+         *          type: 'analysis',
+         *      }
+         * }
+         * @static
+         */
+        public static function requestAURLRescan($id)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->requestAURLRescan($id);
+        }
+        /**
+         * Get comments on a URL.
+         *
+         * @link https://developers.virustotal.com/reference/urls-comments-get
+         * @param string $id
+         * @param string|null $cursor
+         * @param int $limit
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getCommentsOnAURL($id, $cursor = null, $limit = 40)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getCommentsOnAURL($id, $cursor, $limit);
+        }
+        /**
+         * Add a comment on a URL.
+         *
+         * @link https://developers.virustotal.com/reference/urls-comments-post
+         * @param string $ip
+         * @param string $text
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function addACommentOnAURL($ip, $text)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->addACommentOnAURL($ip, $text);
+        }
+        /**
+         * Get objects related to a URL.
+         *
+         * @link https://developers.virustotal.com/reference/urls-relationships
+         * @param string $id
+         * @param string $relationship
+         * @param string|null $cursor
+         * @param int $limit
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getObjectsRelatedToAURL($id, $relationship, $cursor = null, $limit = 40)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getObjectsRelatedToAURL($id, $relationship, $cursor, $limit);
+        }
+        /**
+         * Get object descriptors related to a URL.
+         *
+         * @link https://developers.virustotal.com/reference/ip-relationships-ids
+         * @param string $id
+         * @param string $relationship
+         * @param string|null $cursor
+         * @param int $limit
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getObjectDescriptorsRelatedToAURL($id, $relationship, $cursor = null, $limit = 40)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getObjectDescriptorsRelatedToAURL($id, $relationship, $cursor, $limit);
+        }
+        /**
+         * Get votes on a URL.
+         *
+         * @link https://developers.virustotal.com/reference/urls-votes-get
+         * @param string $id
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function getVotesOnAURL($id)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->getVotesOnAURL($id);
+        }
+        /**
+         * Add a vote on a URL.
+         *
+         * @link https://developers.virustotal.com/reference/urls-votes-post
+         * @param string $id
+         * @param string $verdict
+         * @throws \GuzzleHttp\Exception\GuzzleException
+         * @return \NormanHuth\VirusTotal\Clients\array{ status: int,
+         *     successful: bool,
+         *     data: array
+         * }
+         * @static
+         */
+        public static function addAVoteOnAURL($id, $verdict)
+        {            //Method inherited from \NormanHuth\VirusTotal\Clients\VirusTotalApiClient
+            /** @var \NormanHuth\VirusTotal\Services\VirusTotalLaravel $instance */
+            return $instance->addAVoteOnAURL($id, $verdict);
+        }
+
+    }
+
+}
+namespace  {
+    class VirusTotal extends \NormanHuth\VirusTotal\Facades\VirusTotal {}
+
+}
