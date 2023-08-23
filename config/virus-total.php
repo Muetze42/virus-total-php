@@ -13,7 +13,7 @@ return [
     |
     */
 
-   'api-key' => env('VIRUS_TOTAL_API_KEY'),
+   'api-key' => env('VIRUS_TOTAL_API_KEY', ''),
 
     /*
     |--------------------------------------------------------------------------
