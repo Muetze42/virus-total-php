@@ -6,7 +6,7 @@ use NormanHuth\VirusTotal\Clients\VirusTotalApiClient;
 
 class VirusTotal extends VirusTotalApiClient
 {
-    public function __construct(string $apiKey, bool $httpErrors = false, int $timeout = 30)
+    public function __construct(string $apiKey, bool $httpErrors = false, int $timeout = 0)
     {
         $this->apiKey = $apiKey;
         $this->httpErrors = $httpErrors;

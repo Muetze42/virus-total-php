@@ -10,7 +10,7 @@ class VirusTotalLaravel extends VirusTotalApiClient
     {
         $this->apiKey = config('virus-total.api-key');
         $this->httpErrors = config('virus-total.http_errors');
-        $this->timeout = config('virus-total.timeout', 30);
+        $this->timeout = config('virus-total.timeout', 0);
 
         parent::__construct();
     }
