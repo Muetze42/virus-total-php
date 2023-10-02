@@ -9,7 +9,7 @@
 ```php
 use NormanHuth\VirusTotal\VirusTotal;
 
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $upload = $client->scanFile('/path/to-file');
 $analysisId = $upload['data']['id'];
@@ -22,7 +22,7 @@ $result = $client->analyseUrlOrFile($analysisId);
 ```php
 use NormanHuth\VirusTotal\VirusTotal;
 
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $url = $client->scanURL('https://huth.it/coffee');
 $analysisId = $url['data']['id']
@@ -35,7 +35,7 @@ $result = $client->analyseUrlOrFile($analysisId);
 ```php
 use NormanHuth\VirusTotal\VirusTotal;
 
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $result = $client->scanDomain('/path/to-file');
 
@@ -51,7 +51,7 @@ return $result['data'];
 Reference: https://developers.virustotal.com/reference/ip-info
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getAnIPAddressReport(string $ip): array
 ```
@@ -61,7 +61,7 @@ $client->getAnIPAddressReport(string $ip): array
 Reference: https://developers.virustotal.com/reference/ip-comments-get
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getCommentsOnAnIPAddress(string $ip, ?string $cursor, int $limit): array
 ```
@@ -71,7 +71,7 @@ $client->getCommentsOnAnIPAddress(string $ip, ?string $cursor, int $limit): arra
 Reference: https://developers.virustotal.com/reference/ip-comments-post
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->addACommentToAnIPAddress(string $ip, string $text): array
 ```
@@ -81,7 +81,7 @@ $client->addACommentToAnIPAddress(string $ip, string $text): array
 Reference: https://developers.virustotal.com/reference/ip-relationships
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getObjectsRelatedToAnIPAddress(string $ip, string $relationship, ?string $cursor, int $limit): array
 ```
@@ -91,7 +91,7 @@ $client->getObjectsRelatedToAnIPAddress(string $ip, string $relationship, ?strin
 Reference: https://developers.virustotal.com/reference/ip-relationships-ids
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getObjectDescriptorsRelatedToAnIPAddress(string $ip, string $relationship, ?string $cursor, int $limit): array
 ```
@@ -101,7 +101,7 @@ $client->getObjectDescriptorsRelatedToAnIPAddress(string $ip, string $relationsh
 Reference: https://developers.virustotal.com/reference/ip-votes
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getVotesOnAnIPAddress(string $ip): array
 ```
@@ -111,7 +111,7 @@ $client->getVotesOnAnIPAddress(string $ip): array
 Reference: https://developers.virustotal.com/reference/ip-votes-post
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->addAVoteToAnIPAddress(string $ip, string $verdict): array
 ```
@@ -123,7 +123,7 @@ $client->addAVoteToAnIPAddress(string $ip, string $verdict): array
 Reference: https://developers.virustotal.com/reference/domain-info
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getADomainReport(string $domain): array
 ```
@@ -133,7 +133,7 @@ $client->getADomainReport(string $domain): array
 Reference: https://developers.virustotal.com/reference/domains-comments-get
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getCommentsOnADomain(string $domain, ?string $cursor, int $limit): array
 ```
@@ -143,7 +143,7 @@ $client->getCommentsOnADomain(string $domain, ?string $cursor, int $limit): arra
 Reference: https://developers.virustotal.com/reference/domains-comments-post
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->addACommentToADomain(string $domain, string $text): array
 ```
@@ -153,7 +153,7 @@ $client->addACommentToADomain(string $domain, string $text): array
 Reference: https://developers.virustotal.com/reference/domains-relationships
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getObjectsRelatedToADomain(string $domain, string $relationship, ?string $cursor, int $limit): array
 ```
@@ -163,7 +163,7 @@ $client->getObjectsRelatedToADomain(string $domain, string $relationship, ?strin
 Reference: https://developers.virustotal.com/reference/domains-relationships-ids
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getObjectDescriptorsRelatedToADomain(string $domain, string $relationship, ?string $cursor, int $limit): array
 ```
@@ -173,7 +173,7 @@ $client->getObjectDescriptorsRelatedToADomain(string $domain, string $relationsh
 Reference: https://developers.virustotal.com/reference/get-resolution-by-id
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getADNSResolutionObject(string $id): array
 ```
@@ -183,7 +183,7 @@ $client->getADNSResolutionObject(string $id): array
 Reference: https://developers.virustotal.com/reference/domains-votes-get
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getVotesOnADomain(string $domain): array
 ```
@@ -193,7 +193,7 @@ $client->getVotesOnADomain(string $domain): array
 Reference: https://developers.virustotal.com/reference/domain-votes-post
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->addAVoteToADomain(string $domain, string $verdict): array
 ```
@@ -205,7 +205,7 @@ $client->addAVoteToADomain(string $domain, string $verdict): array
 Reference: https://developers.virustotal.com/reference/files-scan
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->uploadAFile(string $file, ?string $password): array
 ```
@@ -215,7 +215,7 @@ $client->uploadAFile(string $file, ?string $password): array
 Reference: https://developers.virustotal.com/reference/files-upload-url
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getAURLForUploadingLargeFiles(): array
 ```
@@ -225,7 +225,7 @@ $client->getAURLForUploadingLargeFiles(): array
 Reference: https://developers.virustotal.com/reference/files-upload-url
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->uploadALargeFile(string $url, string $file, ?string $password): array
 ```
@@ -235,7 +235,7 @@ $client->uploadALargeFile(string $url, string $file, ?string $password): array
 Reference: https://developers.virustotal.com/reference/files-analyse
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->requestAFileRescan(string $id): array
 ```
@@ -245,7 +245,7 @@ $client->requestAFileRescan(string $id): array
 Reference: https://developers.virustotal.com/reference/files-download-url
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getAFilesDownloadURL(string $id): array
 ```
@@ -255,7 +255,7 @@ $client->getAFilesDownloadURL(string $id): array
 Reference: https://developers.virustotal.com/reference/files-download
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->downloadAFile(string $id, string $target): \Psr\Http\Message\ResponseInterface
 ```
@@ -265,7 +265,7 @@ $client->downloadAFile(string $id, string $target): \Psr\Http\Message\ResponseIn
 Reference: https://developers.virustotal.com/reference/files-comments-get
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getCommentsOnAFile(string $id, ?string $cursor, int $limit): array
 ```
@@ -275,7 +275,7 @@ $client->getCommentsOnAFile(string $id, ?string $cursor, int $limit): array
 Reference: https://developers.virustotal.com/reference/ip-comments-post
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->addACommentToAFile(string $id, string $text): array
 ```
@@ -285,7 +285,7 @@ $client->addACommentToAFile(string $id, string $text): array
 Reference: https://developers.virustotal.com/reference/files-relationships
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getObjectsRelatedToAFile(string $id, string $relationship, ?string $cursor, int $limit): array
 ```
@@ -295,7 +295,7 @@ $client->getObjectsRelatedToAFile(string $id, string $relationship, ?string $cur
 Reference: https://developers.virustotal.com/reference/files-relationships-ids
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getObjectDescriptorsRelatedToAFile(string $id, string $relationship, ?string $cursor, int $limit): array
 ```
@@ -305,7 +305,7 @@ $client->getObjectDescriptorsRelatedToAFile(string $id, string $relationship, ?s
 Reference: https://developers.virustotal.com/reference/get-sigma-rules
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getACrowdsourcedSigmaRuleObject(string $id): array
 ```
@@ -315,7 +315,7 @@ $client->getACrowdsourcedSigmaRuleObject(string $id): array
 Reference: https://developers.virustotal.com/reference/get-yara-rulesets
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getACrowdsourcedYARARuleset(string $id): array
 ```
@@ -325,7 +325,7 @@ $client->getACrowdsourcedYARARuleset(string $id): array
 Reference: https://developers.virustotal.com/reference/files-votes-get
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getVotesOnAFile(string $id): array
 ```
@@ -335,7 +335,7 @@ $client->getVotesOnAFile(string $id): array
 Reference: https://developers.virustotal.com/reference/files-votes-post
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->addAVoteOnAFile(string $id, string $verdict): array
 ```
@@ -347,7 +347,7 @@ $client->addAVoteOnAFile(string $id, string $verdict): array
 Reference: https://developers.virustotal.com/reference/scan-url
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->scanURL(string $url): array
 ```
@@ -357,7 +357,7 @@ $client->scanURL(string $url): array
 Reference: https://developers.virustotal.com/reference/url-info
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getAURLAnalysisReport(string $id): array
 ```
@@ -367,7 +367,7 @@ $client->getAURLAnalysisReport(string $id): array
 Reference: https://developers.virustotal.com/reference/urls-analyse
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->requestAURLRescan(string $id): array
 ```
@@ -377,7 +377,7 @@ $client->requestAURLRescan(string $id): array
 Reference: https://developers.virustotal.com/reference/urls-comments-get
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getCommentsOnAURL(string $id, ?string $cursor, int $limit): array
 ```
@@ -387,7 +387,7 @@ $client->getCommentsOnAURL(string $id, ?string $cursor, int $limit): array
 Reference: https://developers.virustotal.com/reference/urls-comments-post
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->addACommentOnAURL(string $ip, string $text): array
 ```
@@ -397,7 +397,7 @@ $client->addACommentOnAURL(string $ip, string $text): array
 Reference: https://developers.virustotal.com/reference/urls-relationships
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getObjectsRelatedToAURL(string $id, string $relationship, ?string $cursor, int $limit): array
 ```
@@ -407,7 +407,7 @@ $client->getObjectsRelatedToAURL(string $id, string $relationship, ?string $curs
 Reference: https://developers.virustotal.com/reference/ip-relationships-ids
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getObjectDescriptorsRelatedToAURL(string $id, string $relationship, ?string $cursor, int $limit): array
 ```
@@ -417,7 +417,7 @@ $client->getObjectDescriptorsRelatedToAURL(string $id, string $relationship, ?st
 Reference: https://developers.virustotal.com/reference/urls-votes-get
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getVotesOnAURL(string $id): array
 ```
@@ -427,7 +427,7 @@ $client->getVotesOnAURL(string $id): array
 Reference: https://developers.virustotal.com/reference/urls-votes-post
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->addAVoteOnAURL(string $id, string $verdict): array
 ```
@@ -439,7 +439,7 @@ $client->addAVoteOnAURL(string $id, string $verdict): array
 Reference: https://developers.virustotal.com/reference/get-comments
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getLatestComments(?string $filter, ?string $cursor, int $limit): array
 ```
@@ -449,7 +449,7 @@ $client->getLatestComments(?string $filter, ?string $cursor, int $limit): array
 Reference: https://developers.virustotal.com/reference/get-comment
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getACommentObject(string $id, ?string $relationships): array
 ```
@@ -459,7 +459,7 @@ $client->getACommentObject(string $id, ?string $relationships): array
 Reference: https://developers.virustotal.com/reference/comment-id-patch
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->updateAComment(string $id, mixed $data): array
 ```
@@ -469,7 +469,7 @@ $client->updateAComment(string $id, mixed $data): array
 Reference: https://developers.virustotal.com/reference/comment-id-delete
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->deleteAComment(string $id): array
 ```
@@ -479,7 +479,7 @@ $client->deleteAComment(string $id): array
 Reference: https://developers.virustotal.com/reference/comments-relationships
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getObjectsRelatedToAComment(string $id, string $relationship): array
 ```
@@ -489,7 +489,7 @@ $client->getObjectsRelatedToAComment(string $id, string $relationship): array
 Reference: https://developers.virustotal.com/reference/comments-relationships-ids
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getObjectDescriptorsRelatedToAComment(string $id, string $relationship, ?string $cursor, int $limit): array
 ```
@@ -499,7 +499,7 @@ $client->getObjectDescriptorsRelatedToAComment(string $id, string $relationship,
 Reference: https://developers.virustotal.com/reference/vote-comment
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->addAVoteToAComment(string $id, mixed $data): array
 ```
@@ -511,7 +511,7 @@ $client->addAVoteToAComment(string $id, mixed $data): array
 Reference: https://developers.virustotal.com/reference/analysis
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getAURLOrFileAnalysis(string $id): array
 ```
@@ -521,7 +521,7 @@ $client->getAURLOrFileAnalysis(string $id): array
 Reference: https://developers.virustotal.com/reference/analysesidrelationship-1
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getObjectsRelatedToAnAnalysis(string $id, string $relationship): array
 ```
@@ -531,7 +531,7 @@ $client->getObjectsRelatedToAnAnalysis(string $id, string $relationship): array
 Reference: https://developers.virustotal.com/reference/analysesidrelationshipsrelationship-1
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getObjectDescriptorsRelatedToAnAnalysis(string $id, string $relationship): array
 ```
@@ -541,7 +541,7 @@ $client->getObjectDescriptorsRelatedToAnAnalysis(string $id, string $relationshi
 Reference: https://developers.virustotal.com/reference/get-submission
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getASubmissionObject(string $id): array
 ```
@@ -551,7 +551,7 @@ $client->getASubmissionObject(string $id): array
 Reference: https://developers.virustotal.com/reference/get-operations-id
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getAnOperationObject(string $id): array
 ```
@@ -563,7 +563,7 @@ $client->getAnOperationObject(string $id): array
 Reference: https://developers.virustotal.com/reference/attack_tacticsid
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getAnAttackTacticObject(string $id): array
 ```
@@ -573,7 +573,7 @@ $client->getAnAttackTacticObject(string $id): array
 Reference: https://developers.virustotal.com/reference/attack_tacticsidrelationship
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getObjectsRelatedToAnAttackTactic(string $id, string $relationship, ?string $cursor, int $limit): array
 ```
@@ -583,7 +583,7 @@ $client->getObjectsRelatedToAnAttackTactic(string $id, string $relationship, ?st
 Reference: https://developers.virustotal.com/reference/attack_tacticsidrelationshipsrelationship
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getObjectDescriptorsRelatedToAnAttackTactic(string $id, string $relationship, ?string $cursor, int $limit): array
 ```
@@ -595,7 +595,7 @@ $client->getObjectDescriptorsRelatedToAnAttackTactic(string $id, string $relatio
 Reference: https://developers.virustotal.com/reference/attack_techniqueid
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getAnAttackTechniqueObject(string $id): array
 ```
@@ -605,7 +605,7 @@ $client->getAnAttackTechniqueObject(string $id): array
 Reference: https://developers.virustotal.com/reference/attack_techniqueidrelationship
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getObjectsRelatedToAnAttackTechnique(string $id, string $relationship, ?string $cursor, int $limit): array
 ```
@@ -615,7 +615,7 @@ $client->getObjectsRelatedToAnAttackTechnique(string $id, string $relationship, 
 Reference: https://developers.virustotal.com/reference/attack_techniquesidrelationshipsrelationship
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getObjectDescriptorsRelatedToAnAttackTechnique(string $id, string $relationship, ?string $cursor, int $limit): array
 ```
@@ -627,7 +627,7 @@ $client->getObjectDescriptorsRelatedToAnAttackTechnique(string $id, string $rela
 Reference: https://developers.virustotal.com/reference/popular_threat_categories
 
 ```php
-$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 30);
+$client = new VirusTotal($apiKey, $httpErrors = false, $timeout = 0);
 
 $client->getAListOfPopularThreatCategories(): array
 ```

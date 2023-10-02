@@ -45,7 +45,7 @@ class VirusTotalApiClient
     /**
      * @var int
      */
-    protected int $timeout = 30;
+    protected int $timeout = 0;
 
     /**
      * @var bool
